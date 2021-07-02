@@ -37,13 +37,13 @@ def safe_paths(res_graph, adjacency):
     flow = res_graph.T & adjacency
     for end in range(flow.shape[0]):
         cur = 0
-        path = [0]
+        path = [1]
         if flow[cur, end]:
-            path.append(end)
+            path.append(end + 1)
             cur = end
             while cur != flow.shape[0] - 1:
                 end = np.argwhere(flow[cur, :] == 1)[0][0]
-                path.append(end)
+                path.append(end + 1)
                 cur = end
             print(path)
 
